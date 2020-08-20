@@ -22,7 +22,7 @@ class Scaler(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
     
-    def transform(self, X, range_min = -1/3, range_max=1/3):
+    def transform(self, X, range_min = 0, range_max=0):
         data = X.copy()
         groups = self.generate_groups(data)
         for group in groups:
