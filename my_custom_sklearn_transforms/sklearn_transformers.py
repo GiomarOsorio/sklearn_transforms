@@ -42,6 +42,7 @@ class Scaler(BaseEstimator, TransformerMixin):
                 groups.append(group)
                 group = [columns_name[index]]
                 name_group_prefix = column_name_prefix
+        groups.append(group)
         return groups
 
     def min_max_scaler(self, X, range_min, range_max):
