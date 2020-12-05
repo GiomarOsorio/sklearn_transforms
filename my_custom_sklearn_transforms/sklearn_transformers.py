@@ -2,7 +2,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 
 # All sklearn Transforms must have the `transform` and `fit` methods
-class DropColumns(BaseEstimator, TransformerMixin):
+class Custom_DropColumns(BaseEstimator, TransformerMixin):
     def __init__(self, columns):
         self.columns = columns
 
@@ -15,7 +15,22 @@ class DropColumns(BaseEstimator, TransformerMixin):
         # Devolvemos un nuevo dataframe de datos sin las columnas no deseadas
         return data.drop(labels=self.columns, axis='columns')
 
-class Scaler(BaseEstimator, TransformerMixin):
+class Custom_CategoricalColumns(BaseEstimator, TransformerMixin):
+    def __init__(self, columns):
+        self.columns = columns
+
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        # Primero copiamos el dataframe de datos de entrada 'X'
+        data = X.copy()
+        for column in self.columms:
+            data[column] = data[column].astype('category').cat.codes
+        # Devolvemos un nuevo dataframe de datos sin las columnas no deseadas
+        return data
+    
+class Custom_Scaler(BaseEstimator, TransformerMixin):
     def __init__(self, columns):
         self.columns = columns
 
