@@ -25,7 +25,7 @@ class Custom_CategoricalColumns(BaseEstimator, TransformerMixin):
     def transform(self, X):
         # Primero copiamos el dataframe de datos de entrada 'X'
         data = X.copy()
-        for column in self.columms:
+        for column in self.columns:
             data[column] = data[column].astype('category').cat.codes
         # Devolvemos un nuevo dataframe de datos sin las columnas no deseadas
         return data
